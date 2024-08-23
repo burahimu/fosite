@@ -229,6 +229,10 @@ type Config struct {
 
 	// IsPushedAuthorizeEnforced enforces pushed authorization request for /authorize
 	IsPushedAuthorizeEnforced bool
+
+	RFC8693TokenTypes map[string]RFC8693TokenType
+
+	DefaultRequestedTokenType string
 }
 
 func (c *Config) GetGlobalSecret(ctx context.Context) ([]byte, error) {
@@ -539,4 +543,12 @@ func (c *Config) GetDeviceAuthTokenPollingInterval(ctx context.Context) time.Dur
 		return defaultAuthTokenPollingInterval
 	}
 	return c.DeviceAuthTokenPollingInterval
+}
+
+func (c *Config) GetTokenTypes(ctx context.Context) map[string]RFC8693TokenType {
+	return c.RFC8693TokenTypes
+}
+
+func (c *Config) GetDefaultRequestedTokenType(ctx context.Context) string {
+	return c.DefaultRequestedTokenType
 }

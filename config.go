@@ -323,3 +323,9 @@ type DeviceEndpointHandlersProvider interface {
 	// GetDeviceEndpointHandlers returns the handlers.
 	GetDeviceEndpointHandlers(ctx context.Context) DeviceEndpointHandlers
 }
+
+type RFC8693ConfigProvider interface {
+	GetTokenTypes(ctx context.Context) map[string]RFC8693TokenType
+
+	GetDefaultRequestedTokenType(ctx context.Context) string
+}
